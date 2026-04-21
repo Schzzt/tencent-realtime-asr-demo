@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# 密钥配置（禁止提交）
+config.json
+
+# 编译产物
+speaker-demo
+*.exe
+*.out
+
+# 日志
+*.log

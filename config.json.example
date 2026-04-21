@@ -1,0 +1,6 @@
+{
+  "port": 8080,
+  "appid": "YOUR_APPID",
+  "secret_id": "YOUR_SECRET_ID",
+  "secret_key": "YOUR_SECRET_KEY"
+}

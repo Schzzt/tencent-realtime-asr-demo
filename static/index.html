@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>语音识别体验 Demo</title>
+    <link rel="stylesheet" href="style.css?v=210">
+</head>
+<body>
+    <div class="layout">
+        <!-- 左侧面板 -->
+        <aside class="panel-left">
+            <header>
+                <h1>🎤 语音识别体验</h1>
+                <p class="subtitle">实时语音识别 · 句子模式</p>
+            </header>
+
+            <section class="card">
+                <h2>识别配置</h2>
+                <div class="form-stack">
+                    <div class="form-group">
+                        <label for="engineModel">引擎模型</label>
+                        <input type="text" id="engineModel" value="16k_zh_en_speaker" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="sentenceStrategy">分句策略</label>
+                        <select id="sentenceStrategy">
+                            <option value="0" selected>语义单句</option>
+                            <option value="1">段落</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>话者分离</label>
+                            <label class="toggle">
+                                <input type="checkbox" id="speakerDiarization" checked>
+                                <span class="toggle-slider"></span>
+                                <span class="toggle-label" id="diarizationLabel">开启</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+                <div class="audio-input-stack">
+                    <div class="input-mode-tabs">
+                        <button class="mode-tab active" id="tabMic" data-mode="mic">🎙️ 麦克风</button>
+                        <button class="mode-tab" id="tabFile" data-mode="file">📁 文件</button>
+                    </div>
+                    <div class="input-mode-panel" id="panelMic">
+                        <div class="mic-status" id="micStatus">点击下方按钮开始录音</div>
+                        <div class="mic-timer" id="micTimer" style="display:none">🔴 录音中 <span id="micElapsed">00:00</span></div>
+                    </div>
+                    <div class="input-mode-panel" id="panelFile" style="display:none">
+                        <div class="file-select">
+                            <label class="btn btn-outline" for="audioFile">选择音频文件</label>
+                            <input type="file" id="audioFile" accept=".pcm,.wav,.mp3,.m4a,.aac,.opus,.ogg,.silk,.speex" hidden>
+                        </div>
+                        <span class="file-info" id="fileInfo">支持 pcm/wav/mp3/m4a/aac/opus/silk/speex</span>
+                        <div class="audio-meta" id="audioMeta" style="display:none">
+                            <div class="audio-meta-row"><span class="meta-k">格式</span><span class="meta-v" id="metaFormat">—</span></div>
+                            <div class="audio-meta-row"><span class="meta-k">采样率</span><span class="meta-v" id="metaSampleRate">—</span></div>
+                            <div class="audio-meta-row"><span class="meta-k">时长</span><span class="meta-v" id="metaDuration">—</span></div>
+                        </div>
+                        <div class="speed-control" id="speedControl" style="display:none">
+                            <label class="speed-label">发送倍速 <span id="speedValue">1.0x</span></label>
+                            <input type="range" id="speedSlider" min="0.5" max="3" step="0.1" value="1.0">
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <button class="btn btn-primary" id="btnStart">▶ 开始识别</button>
+                        <button class="btn btn-danger" id="btnStop" disabled>⏹ 停止</button>
+                    </div>
+                </div>
+            </section>
+        </aside>
+
+        <!-- 右侧面板：识别结果 + 日志 -->
+        <main class="panel-right">
+            <section class="card result-card">
+                <h2>识别结果</h2>
+                <div class="result-meta" id="resultMeta" style="display:none">
+                    <div class="meta-item">
+                        <span class="meta-label">VoiceID:</span>
+                        <span class="meta-value" id="voiceIdDisplay">—</span>
+                        <button class="btn-icon" id="btnCopyVoiceId" title="复制">📋</button>
+                        <button class="btn btn-outline btn-sm btn-export" id="btnExportWav" title="导出音频" disabled>💾 导出WAV</button>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">状态:</span>
+                        <span class="status-dot" id="statusDot"></span>
+                        <span id="statusText">就绪</span>
+                    </div>
+                </div>
+                <div class="result-area" id="resultArea">
+                    <div class="placeholder" id="resultPlaceholder">选择音频来源并点击"开始识别"</div>
+                </div>
+            </section>
+            <section class="card log-card">
+                <div class="log-header">
+                    <h2>ASR 原始日志</h2>
+                    <button class="btn btn-outline btn-sm" id="btnClearLog">清空</button>
+                </div>
+                <div class="log-area" id="logArea"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js?v=210"></script>
+</body>
+</html>
