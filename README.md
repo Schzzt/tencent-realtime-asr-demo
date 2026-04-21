@@ -1,4 +1,4 @@
-# Speaker Demo — 实时语音识别体验
+# tencent-realtime-asr-demo — 实时语音识别体验
 
 使用麦克风实时录音识别，支持话者分离（区分多个说话人），适用于实时会议场景。
 
@@ -37,7 +37,7 @@ make run-silent
 ## 目录结构
 
 ```
-speaker-demo/
+tencent-realtime-asr-demo/
 ├── main.go              # 入口：HTTP 路由 + 自动打开浏览器
 ├── handler.go           # WebSocket 处理 + SDK 桥接
 ├── config.go            # 配置读取
@@ -60,6 +60,8 @@ speaker-demo/
 ## 功能说明
 
 - **麦克风录音**：点击"开始识别"，实时录音并识别
-- **话者分离**：开启后使用 `16k_zh_en_speaker` 引擎，区分不同说话人，以聊天气泡形式展示
-- **标准识别**：关闭话者分离时使用 `16k_zh` 引擎，字幕样式展示
+- **文件识别**：上传本地音频文件识别（支持 wav、mp3、m4a 等常见格式）
+- **句子模式**：使用 `16k_zh_en_speaker` 引擎 + `SpeakerRecognizer` SDK，每次返回全量句子列表
+- **话者分离**：开启后区分不同说话人，以聊天气泡形式展示；关闭后以字幕形式展示
+- **分句策略**：语义单句（每句独立）或段落（同一人连续发言聚合）
 - **WAV 导出**：识别结束后可导出录音为 WAV 文件

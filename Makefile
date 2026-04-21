@@ -1,16 +1,16 @@
 .PHONY: build run clean setup
 
-# Build the speaker-demo binary
+# Build the binary
 build:
-	go build -o speaker-demo .
+	go build -o tencent-realtime-asr-demo .
 
 # Build and run (auto-opens browser)
 run: build
-	./speaker-demo
+	./tencent-realtime-asr-demo
 
 # Build and run without auto-opening browser
 run-silent: build
-	./speaker-demo --no-browser
+	./tencent-realtime-asr-demo --no-browser
 
 # First-time setup: copy config from example
 setup:
@@ -24,4 +24,4 @@ setup:
 
 # Clean build artifacts
 clean:
-	rm -f speaker-demo
+	rm -f tencent-realtime-asr-demo

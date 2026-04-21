@@ -1,4 +1,4 @@
-module speaker-demo
+module tencent-realtime-asr-demo
 
 go 1.18
 
