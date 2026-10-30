@@ -61,10 +61,10 @@ type StartMessage struct {
 	EngineModelType    string  `json:"engine_model_type"`
 	SpeakerDiarization int     `json:"speaker_diarization"`
 	SentenceStrategy   int     `json:"sentence_strategy"`
-	VoiceFormat        int     `json:"voice_format"`  // SDK 音频格式常量，0 或缺省时用 FileName 扩展名推导
-	FileName           string  `json:"file_name"`     // 仅用于后端按扩展名推导 VoiceFormat
-	SpeedFactor        float64 `json:"speed_factor"`  // 文件发送倍速，0=不限速（麦克风），>0=按倍速节流
-	Source             string  `json:"source"`        // "mic" 或 "file"
+	VoiceFormat        int     `json:"voice_format"` // SDK 音频格式常量，0 或缺省时用 FileName 扩展名推导
+	FileName           string  `json:"file_name"`    // 仅用于后端按扩展名推导 VoiceFormat
+	SpeedFactor        float64 `json:"speed_factor"` // 文件发送倍速，0=不限速（麦克风），>0=按倍速节流
+	Source             string  `json:"source"`       // "mic" 或 "file"
 }
 
 // --- Backend → Frontend message types ---
@@ -246,7 +246,7 @@ func HandleWebSocket(w http.ResponseWriter, r *http.Request, cfg *Config) {
 
 	engineModel := startMsg.EngineModelType
 	if engineModel == "" {
-		engineModel = "16k_zh_en_speaker"
+		engineModel = "16k_zh_en_speaker_2.0"
 	}
 
 	// 判断来源：麦克风固定 PCM，文件走扩展名推导
